@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Registration Form</title>
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:rgb(147, 158, 249);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+ 
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+ 
+
+        form {
+
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            margin: 60px 140px 140px 550px;
+        }
+
+ 
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+ 
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1.4px solid #000000;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+ 
+
+        input[type="submit"] {
+            background-color: #2b3fc5;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+ 
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+ 
+
+        .error-message {
+            color: #f00;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+</style>
+
+ 
+
+</head>
+
+<body>
+
+    <h1>Registration Form</h1>
+
+    <form method="post" action="#" th:action="@{/forum/register}" th:object="${registrationForm}">
+
+        <!-- <p class="error-message" th:text="${message}">Correct username and password</p> -->
+
+        <label for="username"><b>Username</b></label><br>
+
+        <input type="text" name="username" id="username" th:field="*{username}"><br>
+
+        <label for="password"><b>Password</b></label><br>
+
+        <input type="password" name="password" id="password" th:field="*{password}"><br>
+
+        <label for="passwordrepeat"><b>Repeat Password</b></label><br>
+
+        <input type="password" name="repeatPassword" id="repeatPassword" th:field="*{repeatPassword}"><br>
+
+         <label for="email"><b>Email</b></label><br>
+
+        <input type="text" name="email" id="email" th:field="*{email}"><br>
+	    <label for="dateOfBirth"><b>Date Of Birth</b></label><br>
+		<input type="text" name="dateOfBirth" id="dateOfBirth" th:field="*{dateOfBirth}"><br>
+		<label for="bio"><b>Bio</b></label><br>
+		<input type="text" name="bio" id="bio" th:field="*{bio}"><br>
+
+		<input type="submit" value="Register">
+
+         
+
+    </form>
+
+</body>
+
+</html>

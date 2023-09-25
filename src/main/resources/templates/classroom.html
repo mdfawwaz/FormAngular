@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Student List</title>
+<style>
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(0, 0, 0);
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+  }
+
+  table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgb(255, 255, 255);
+    border-radius: 8px;
+    border: 1px solid rgb(255, 255, 255);
+  }
+
+  th, td {
+    padding: 12px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgb(255, 255, 255);
+  }
+
+  th {
+    background-color: rgb(17, 89, 0);
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+
+  .alert {
+    background-color: #ffc107;
+    color: rgb(255, 255, 255);
+    padding: 8px;
+    margin-top: 8px;
+    border-radius: 4px;
+  }
+
+  form {
+    display: inline-block;
+    margin-right: 10px;
+    color: white;
+  }
+
+  input[type="text"] {
+    padding: 8px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  label{
+	  color: white;
+  }
+
+  input[type="submit"] {
+    background-color: rgb(165, 29, 45);
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  
+</style>
+</head>
+<body>
+  <h1>Student DataBase</h1>
+  <table>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Score</th>
+      <th>Actions</th>
+    </tr>
+    <tr th:each="student, studentStat : ${students}">
+      <td th:text="${student.rank}">1</td>
+      <td th:text="${student.name}">Name</td>
+      <td th:text="${student.score}"></td>
+      <td>
+        <form method="post" action="#" th:action="@{/classroom/delete}">
+          <input type="hidden" name="idx" value="0" th:value="${studentStat.index}">
+          <input type="submit" value="DELETE">
+        </form>
+        
+         <form method="get" action="#" th:action="@{/classroom/edit}">
+					<input type="hidden" name="id" value="0" th:value="${student.id}">
+					<input type="submit" value="EDIT">
+				</form>
+        
+      </td>
+    </tr>
+  </table>
+  <form method="post" action="#" th:action="@{/classroom/add}" th:object="${student}">
+    <label for="name">Student name:</label>
+    <input type="text" id="name" th:field="*{name}">
+    <label for="score">Student score:</label>
+    <input type="text" id="score" th:field="*{score}">
+    <div class="alert" th:if="${#fields.hasErrors('score')}" th:errors="*{score}"></div>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

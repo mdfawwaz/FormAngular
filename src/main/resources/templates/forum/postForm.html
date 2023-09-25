@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>New Post Form</title>
+<style>
+    /* Reset some default styles for better alignment */
+    body, h1, form {
+        margin: 0;
+        padding: 0;
+    }
+
+ 
+
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        background-color:  #b7dfe1;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+ 
+
+    h1 {
+        font-size: 12px;
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+    }
+
+ 
+
+    form {
+        background-color:rgb(20, 28, 72);
+        border-radius: 8px;
+        padding: 20px;
+        height:350px;
+        width: 300px;
+        box-shadow: 0 0 10px rgba(241, 241, 241, 0.823);
+        display: flex;
+        flex-direction: column; /* Stack form elements vertically */
+        align-items: center; /* Center form elements horizontally */
+    }
+
+ 
+
+    label {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: #fefefe;
+        text-align: left; /* Align labels to the left */
+        width: 100%; /* Expand labels to full width */
+    }
+
+ 
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        height:200px;
+        border: 1px solid #040000;
+        background-color: rgb(255, 255, 255);
+        color: #0f0e0e;
+        /* resize: vertical; */
+        margin-bottom: 10px; 
+    }
+
+ 
+
+    input[type="hidden"],
+    input[type="submit"] {
+        background-color: rgb(134, 168, 227);
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+ 
+
+    input[type="submit"]:hover {
+        background-color: #4757ea; 
+    }
+</style>
+
+</head>
+
+
+<body>
+    <form method="post" action="#" th:action="@{/forum/post/add}" th:object="${postForm}">
+        <label for="content"><b> Write Your Post Here.</b></label>
+        <textarea id="content" name="content" th:field="*{content}" rows="5"></textarea>
+        <input type="hidden" th:field="*{userId}">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
